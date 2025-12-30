@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <Router basename="/Hanzi-Shifu-Restaurant">
+    <Router>
       <Routes>
         {/* PUBLIC PAGES WITH FOOTER */}
         <Route element={<MainLayout />}>
@@ -54,6 +54,10 @@ function App() {
       </Routes>
     </Router>
   );
+
+
+
+
 }
 
 export default App;
