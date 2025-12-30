@@ -3,8 +3,6 @@ const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-// const db = require('./db'); // ⛔ no longer needed once you fully move from MySQL
-
 const authRoutes = require('./routes/auth');
 const reservationsRoutes = require('./routes/reservations');
 const adminRoutes = require('./routes/admin');
@@ -37,12 +35,18 @@ app.get('/', (req, res) => {
   res.send('Hanzi backend is running');
 });
 
-// Optional: MongoDB test route (instead of SQL SELECT 1+1)
+// MongoDB test route
 app.get('/api/test-db', (req, res) => {
   if (mongoose.connection.readyState === 1) {
-    return res.json({ message: 'MongoDB connected!', state: mongoose.connection.readyState });
+    return res.json({
+      message: 'MongoDB connected!',
+      state: mongoose.connection.readyState,
+    });
   }
-  return res.status(500).json({ message: 'MongoDB not connected', state: mongoose.connection.readyState });
+  return res.status(500).json({
+    message: 'MongoDB not connected',
+    state: mongoose.connection.readyState,
+  });
 });
 
 // API routes
