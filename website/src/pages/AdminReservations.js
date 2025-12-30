@@ -1,8 +1,9 @@
-// src/pages/AdminReservations.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Admin-panel.css";
+
+const API_URL = "https://hanzi-1.onrender.com";
 
 export default function AdminReservations() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function AdminReservations() {
     const fetchReservations = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5001/api/admin/reservations", {
+        const res = await axios.get(`${API_URL}/api/admin/reservations`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setReservations(res.data.reservations);
@@ -29,7 +30,7 @@ export default function AdminReservations() {
     if (!window.confirm("Cancel this reservation?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5001/api/admin/reservations/${id}`, {
+      await axios.delete(`${API_URL}/api/admin/reservations/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setReservations(reservations.filter(r => r.id !== id));

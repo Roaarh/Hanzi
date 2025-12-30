@@ -1,9 +1,10 @@
-// src/pages/Signup.js
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/Login.css";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+
+const API_URL = "https://hanzi-1.onrender.com";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5001/api/auth/signup", {
+      const res = await axios.post(`${API_URL}/api/auth/signup`, {
         name,
         email,
         password,
@@ -49,6 +50,7 @@ function Signup() {
               placeholder="Full Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
 
             <input
@@ -56,6 +58,7 @@ function Signup() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
 
             <input
@@ -63,6 +66,7 @@ function Signup() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
 
             <button type="submit">Sign Up</button>

@@ -1,8 +1,9 @@
-// src/pages/AdminUsers.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Admin-panel.css";
+
+const API_URL = "https://hanzi-1.onrender.com";
 
 export default function AdminUsers() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function AdminUsers() {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5001/api/admin/users", {
+        const res = await axios.get(`${API_URL}/api/admin/users`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUsers(res.data.users);
@@ -40,7 +41,7 @@ export default function AdminUsers() {
   const saveUser = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5001/api/admin/users/${id}`, userForm, {
+      await axios.put(`${API_URL}/api/admin/users/${id}`, userForm, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(users.map(u => u.id === id ? { ...u, ...userForm } : u));
@@ -54,7 +55,7 @@ export default function AdminUsers() {
     if (!window.confirm("Delete this user?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5001/api/admin/users/${id}`, {
+      await axios.delete(`${API_URL}/api/admin/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(users.filter(u => u.id !== id));

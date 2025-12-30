@@ -5,41 +5,39 @@ import "../styles/Login.css";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 
+const API_URL = "https://hanzi-1.onrender.com";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
- const handleLogin = async (e) => {
-  e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await axios.post("http://localhost:5001/api/auth/login", {
-      email,
-      password,
-    });
+    try {
+      const res = await axios.post(`${API_URL}/api/auth/login`, {
+        email,
+        password,
+      });
 
-    const { token, user, message } = res.data;
+      const { token, user, message } = res.data;
 
-    //save user data
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
+      // save user data
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
 
-    setError("");
-    console.log("✅ Login success:", message);
+      setError("");
+      console.log("✅ Login success:", message);
 
- 
-    if (user.role === "admin") {
-      console.log("👑 Admin detected → /admin/dashboard");
-      navigate("/admin/dashboard");
-    } else {
-      console.log("👤 User detected → /reservations");
-      navigate("/reservations");
-    }
-  
-
-
+      if (user.role === "admin") {
+        console.log("👑 Admin detected → /admin/dashboard");
+        navigate("/admin/dashboard");
+      } else {
+        console.log("👤 User detected → /reservations");
+        navigate("/reservations");
+      }
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
@@ -63,6 +61,7 @@ function Login() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
 
             <input
@@ -70,6 +69,7 @@ function Login() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
 
             <button type="submit">Login</button>

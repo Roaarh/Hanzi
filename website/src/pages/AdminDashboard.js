@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Admin-panel.css";
 
+const API_URL = "https://hanzi-1.onrender.com";
+
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [stats, setStats] = useState({ totalUsers: 0, totalReservations: 0, totalAdmins: 0 });
@@ -16,9 +18,9 @@ export default function AdminDashboard() {
       try {
         const token = localStorage.getItem("token");
         const [statsRes, usersRes, resRes] = await Promise.all([
-          axios.get("http://localhost:5001/api/admin/stats", { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get("http://localhost:5001/api/admin/users", { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get("http://localhost:5001/api/admin/reservations", { headers: { Authorization: `Bearer ${token}` } })
+          axios.get(`${API_URL}/api/admin/stats`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${API_URL}/api/admin/users`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${API_URL}/api/admin/reservations`, { headers: { Authorization: `Bearer ${token}` } })
         ]);
         
         setStats(statsRes.data);

@@ -1,9 +1,10 @@
-// src/pages/Reservations.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/Reservation.css";
 import axios from "axios";
+
+const API_URL = "https://hanzi-1.onrender.com";
 
 function Reservations() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Reservations() {
     if (user) {
       setForm((prev) => ({
         ...prev,
-        name: user.name || user.email.split("@")[0]  // Use real name or email prefix
+        name: user.name || user.email.split("@")[0]
       }));
     }
   }, [user]);
@@ -41,8 +42,8 @@ function Reservations() {
   };
 
   const handleLogout = () => {
-    localStorage.clear();  // Remove token + user data
-    navigate("/");         // Go to home page
+    localStorage.clear();
+    navigate("/");
   };
 
   const handleSubmit = async () => {
@@ -53,7 +54,7 @@ function Reservations() {
       console.log('📤 Sending reservation:', form);
       
       const response = await axios.post(
-        "http://localhost:5001/api/reservations",
+        `${API_URL}/api/reservations`,
         {
           name: form.name,
           phone: form.phone,
@@ -71,7 +72,6 @@ function Reservations() {
       console.log('✅ Response:', response.data);
       alert(`✅ Reservation confirmed!\nID: ${response.data.reservationId}`);
       
-      // Clear form (keep name)
       setForm({ 
         name: form.name, 
         phone: "", 
@@ -139,29 +139,26 @@ function Reservations() {
             max="10"
           />
 
-         
-          {/* SUBMIT BUTTON */}
           <button onClick={handleSubmit} disabled={loading}>
             {loading ? "Submitting..." : "Confirm Reservation"}
           </button>
-           {/* 🆕 LOGOUT BUTTON */}
+
           <button 
             onClick={handleLogout}
             style={{
-             width: "50%",
-             padding: "0.5rem",
-             background: "#af1e11ff",
-             borderradius: "10px",
-             margintop: "2rem",
-             cursor: "pointer",
-            fontweight: "bold",
-            border: "none",
-            color: "#000000ff",
+              width: "50%",
+              padding: "0.5rem",
+              background: "#af1e11ff",
+              borderRadius: "10px",
+              marginTop: "2rem",
+              cursor: "pointer",
+              fontWeight: "bold",
+              border: "none",
+              color: "#000000ff",
             }}
           >
-             Logout 
+            Logout 
           </button>
-
         </div>
       </div>
     </div>
