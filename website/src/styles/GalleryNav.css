@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
+.gallery-navbar {
+  background: black; 
+  position: fixed;
+  width: 100%;
+  padding: 25px 40px;
+  z-index: 1000;
+}
+
+.gallery-navbar.scrolled {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.gallery-navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery-navbar img {
+  width: 110px;
+}
+
+.gallery-navbar .navbar-links {
+  display: flex;
+  gap: 25px;
+}
+.navbar-links li a {
+  text-decoration: none;        
+  color: white;                
+  font-weight: 8;
+  font-size:1rem;
+  transition: color 0.3s ease;
+}
+
+
+.navbar-links li a:hover {
+  color: #c7b352; 
+}
+
+
+@media (max-width: 768px) {
+  .navbar-links {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  .navbar-logo img {
+    height: 55px;
+  }
+}
+
+
+.navbar-links li:last-child a {
+  border: 1.5px solid #C6B251;  
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+
+.navbar-links li:last-child a:hover {
+  background-color: #C6B251;    
+  color: rgb(0, 0, 0);              
+}

@@ -1,0 +1,345 @@
+/* YOUR CSS WITH FIXES - Replace entire Admin-panel.css */
+.admin-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  color: #f5f5f5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 6px);
+}
+
+.admin-sidebar {
+  background: #000000;
+  border-right: 0.9px solid #c6b251;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar-top {
+  margin-bottom: 16px;
+}
+
+.admin-sidebar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #c6b251;
+  margin-bottom: 20px;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  flex: 0.9;
+}
+
+.admin-nav-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #e4e4e4;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-nav-link:hover {
+  background: #151515;
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.admin-nav-link.active {
+  background: #c6b251;
+  color: #000000;
+  font-weight: 600;
+}
+
+.admin-logout-btn {
+  margin-top: auto;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #c6b251;
+  background: transparent;
+  color: #c6b251;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.admin-logout-btn:hover {
+  background: #c6b251;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+.admin-hamburger {
+  display: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 1001;
+}
+
+.admin-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #c6b251;
+  border-radius: 99px;
+  transition: all 0.3s ease;
+}
+
+.admin-main {
+  padding: 24px 28px;
+  background: linear-gradient(#000000 50%, #736607c2 100%);
+  overflow-x: auto;
+  position: relative;
+}
+
+.admin-header {
+  margin-bottom: 24px;
+}
+
+.admin-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #c6b251;
+}
+
+.admin-subtitle {
+  font-size: 0.95rem;
+  color: #b3b3b3;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-stat-card {
+  background: #090909;
+  border-radius: 10px;
+  padding: 20px 24px;
+  border: 1px solid #1f1f1f;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease;
+}
+
+.admin-stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.admin-stat-label {
+  font-size: 0.9rem;
+  color: #b3b3b3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-stat-value {
+  display: block;
+  margin-top: 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c6b251;
+}
+
+.admin-section {
+  margin-bottom: 28px;
+  background: #090909;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #1f1f1f;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.admin-section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #c6b251;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #c6b25120;
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table thead {
+  background: #101010;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.admin-table th {
+  font-weight: 600;
+  color: #e6e6e6;
+  border-bottom: 2px solid #2b2b2b;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.admin-table tbody tr:nth-child(even) {
+  background: #0d0d0d;
+}
+
+.admin-table tbody tr:hover {
+  background: #151515;
+}
+
+.admin-table td {
+  color: #d4d4d4;
+  border-bottom: 1px solid #181818;
+}
+
+.admin-table td:first-child {
+  color: #c6b251;
+  font-weight: 600;
+}
+
+.admin-table input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #111;
+  color: #f5f5f5;
+  font-size: 0.9rem;
+}
+
+.admin-table input:focus {
+  outline: none;
+  border-color: #c6b251;
+  box-shadow: 0 0 0 2px #c6b25120;
+}
+
+.admin-small-btn {
+  padding: 6px 12px;
+  margin-right: 8px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.admin-small-btn.primary {
+  background: #c6b251;
+  color: #000;
+}
+
+.admin-small-btn.primary:hover {
+  background: #e0cd6e;
+  transform: translateY(-1px);
+}
+
+.admin-small-btn.danger {
+  background: #ff4d4f;
+  color: white;
+  border: 1px solid #ff4d4f;
+}
+
+.admin-small-btn.danger:hover {
+  background: #ff6666;
+  transform: translateY(-1px);
+}
+
+.admin-small-btn.success {
+  background: #52c41a;
+  color: white;
+  border: 1px solid #52c41a;
+}
+
+.admin-small-btn.success:hover {
+  background: #73d13d;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .admin-sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+  
+  .admin-hamburger {
+    display: flex;
+  }
+  
+  .admin-main {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-table {
+    min-width: 100%;
+    font-size: 0.85rem;
+  }
+}

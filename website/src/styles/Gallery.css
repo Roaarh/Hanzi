@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
+.gallery-page {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Inria Serif', serif;
+  overflow-x: hidden;
+}
+
+.gallery-hero {
+  height: 112vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top: -100px; 
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-title {
+  color: #c6b251;
+  font-size: 3.2rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  mix-blend-mode: screen;
+  position: relative;
+}
+
+
+.fixed-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 504px);
+  grid-template-rows: repeat(4, 501px);
+  justify-content: center;
+  gap: 15px;
+  padding: 3rem 0;
+  background-color: #000;
+}
+
+.gallery-cell {
+  position: relative;
+  width: 504px;
+  height: 501px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.gallery-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-cell:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(198, 178, 81, 0.4);
+}
+
+
+@media (max-width: 1024px) {
+  .fixed-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  .gallery-cell {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fixed-gallery {
+    grid-template-columns: 1fr;
+  }
+  .gallery-cell {
+    height: 250px;
+  }
+  .gallery-title {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+}

@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
+.location-page {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Inria Serif', serif;
+  overflow-x: hidden;
+}
+
+.locations-hero {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  margin-top: -100px;
+  position: relative;
+}
+
+.locations-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.locations-title {
+  color: #c6b251;
+  font-size: 3.4rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.locations-container {
+  padding: 4rem 6%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;                     
+}
+
+
+.location-card {
+  text-align: left;
+}
+
+
+.location-card img {
+  width: 100%;
+  height: 800px;            
+  object-fit: cover;
+  border-radius: 0;          
+}
+
+.location-card h2 {
+  color: #c6b251;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.location-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+
+@media (max-width: 992px) {
+  .locations-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .locations-container {
+    grid-template-columns: 1fr;
+  }
+
+  .locations-title {
+    font-size: 2.2rem;
+  }
+}

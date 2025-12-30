@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap');
+
+.menu-page {
+  background-color: #000;
+  color: #e3c882; /* gold tone */
+  font-family: 'Inria Serif', serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.menu-container {
+  display: flex;
+  width: 85%;
+  margin: 0 auto;
+  padding-top: 100px; 
+  gap: 3rem;
+}
+
+.menu-sidebar {
+  width: 25%;
+  border-right: 1px solid #3a3a3a;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.menu-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem 0;
+}
+
+.menu-sidebar ul li {
+  margin-bottom: 1.2rem;
+}
+
+.menu-sidebar ul li a {
+  color: #e5e5e5;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.menu-sidebar ul li a:hover {
+  color: #fff;
+}
+
+.menu-allergies {
+  font-size: 0.85rem;
+  color: #c4c4c4;
+  line-height: 1.4;
+  border-top: 1px solid #3a3a3a;
+  padding-top: 1.5rem;
+}
+
+.menu-sections {
+  width: 70%;
+}
+
+.menu-section {
+  margin-bottom: 3rem;
+}
+
+.menu-section h2 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #3a3a3a;
+  padding-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.menu-section h3 {
+  font-size: 1.3rem;
+  color: #e3c882;
+  margin-top: 1.5rem;
+}
+
+.menu-section h4 {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  color: #e3c882;
+}
+
+.menu-section p {
+  color: #d1d1d1;
+  line-height: 1.6;
+  margin: 0.4rem 0;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted #333;
+  padding: 0.5rem 0;
+  align-items: center;
+}
+
+.menu-item span {
+  font-size: 1rem;
+}
+
+.menu-item .price {
+  color: #e3c882;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #3a3a3a;
+  margin: 2rem 0;
+  opacity: 0.5;
+}
+@media (max-width: 992px) {
+  .menu-container {
+    flex-direction: column;
+    padding-top: 80px;
+  }
+
+  .menu-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #3a3a3a;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .menu-sections {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .menu-item span {
+    font-size: 0.9rem;
+  }
+
+  .menu-sidebar ul li a {
+    font-size: 0.9rem;
+  }
+}
