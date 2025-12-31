@@ -1,60 +1,55 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const db = require('../db');
+
+const Reservation = require('../models/Reservation');
 
 const router = express.Router();
 
 // creating reservation
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
-  
+
   if (!token) {
     return res.status(401).json({ message: 'Login required' });
   }
 
   try {
-    // Verify JWT token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const userId = decoded.userId;
+    const userId = decoded.userId; // this is Mongo ObjectId string
 
     const { name, phone, reservation_date, reservation_time, guests } = req.body;
 
-    // Validate all fields
     if (!name || !phone || !reservation_date || !reservation_time || !guests) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    const sql = `
-      INSERT INTO reservations (user_id, name, phone, reservation_date, reservation_time, guests)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `;
+    const reservation = new Reservation({
+      user: userId,
+      name,
+      phone,
+      reservation_date: new Date(reservation_date),
+      reservation_time,
+      guests: parseInt(guests, 10),
+    });
 
-    db.query(
-      sql, 
-      [userId, name, phone, reservation_date, reservation_time, parseInt(guests)], 
-      (err, result) => {
-        if (err) {
-          console.error('DB Insert Error:', err);
-          return res.status(500).json({ message: 'Database error' });
-        }
+    const saved = await reservation.save();
 
-        console.log(`✅ New reservation #${result.insertId} by user ${userId}`);
-        res.status(201).json({
-          message: 'Reservation created successfully!',
-          reservationId: result.insertId
-        });
-      }
-    );
+    console.log(`✅ New reservation ${saved._id} by user ${userId}`);
+
+    res.status(201).json({
+      message: 'Reservation created successfully!',
+      reservationId: saved._id,
+    });
   } catch (err) {
-    console.error('Token error:', err.message);
+    console.error('Reservation create error:', err.message);
     return res.status(401).json({ message: 'Invalid token' });
   }
 });
 
-// gets the user reservation
-router.get('/my', (req, res) => {
+// gets the user reservations
+router.get('/my', async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
-  
+
   if (!token) {
     return res.status(401).json({ message: 'Login required' });
   }
@@ -63,21 +58,13 @@ router.get('/my', (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.userId;
 
-    const sql = `
-      SELECT id, name, phone, reservation_date, reservation_time, guests, created_at
-      FROM reservations 
-      WHERE user_id = ?
-      ORDER BY created_at DESC
-    `;
+    const reservations = await Reservation
+      .find({ user: userId })
+      .sort({ created_at: -1 });
 
-    db.query(sql, [userId], (err, rows) => {
-      if (err) {
-        console.error('DB Select Error:', err);
-        return res.status(500).json({ message: 'Database error' });
-      }
-      res.json(rows);
-    });
+    res.json(reservations);
   } catch (err) {
+    console.error('Reservations fetch error:', err.message);
     return res.status(401).json({ message: 'Invalid token' });
   }
 });
